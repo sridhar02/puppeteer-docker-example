@@ -17,6 +17,7 @@ export const scrapeLogic = async (res) => {
   try {
     const page = await browser.newPage();
 
+    // Navigate the page to a URL
     await page.goto("https://developer.chrome.com/");
 
     // Set screen size
@@ -34,7 +35,7 @@ export const scrapeLogic = async (res) => {
     const textSelector = await page.waitForSelector(
       "text/Customize and automate"
     );
-    const fullTitle = await textSelector.evaluate((el) => el.textContent);
+    const fullTitle = await textSelector?.evaluate((el) => el.textContent);
 
     // Print the full title
     const logStatement = `The title of this blog post is ${fullTitle}`;
